@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="char-name">Loading...</h1>
+    <img id="char-image" width="300" />
+
+    <script>
+      const cardCode = "01002";
+      const myFetch = fetch(`https://ringsdb.com/api/public/card/${cardCode}`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+
+          document.getElementById("char-name").textContent = data.name;
+
+          const imgUrl = `https://ringsdb.com/bundles/cards/${cardCode}.png`;
+          document.getElementById("char-image").src = imgUrl;
+        })
+        .catch((error) => console.error(error));
+    </script>
+  </body>
+</html>
